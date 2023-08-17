@@ -1,11 +1,15 @@
 // Write your code here
 
 import {Component} from 'react'
+
 import DenominationItem from '../DenominationItem'
+
 import './index.css'
 
 class CashWithdrawal extends Component {
-  state = {balance: 2000}
+  state = {
+    balance: 2000,
+  }
 
   updateBalance = value => {
     this.setState(prevState => ({balance: prevState.balance - value}))
@@ -14,27 +18,33 @@ class CashWithdrawal extends Component {
   render() {
     const {denominationsList} = this.props
     const {balance} = this.state
+    const name = 'Pavan Kumar'
+    const initial = name.slice(0, 1)
 
     return (
-      <div className="bg-container">
-        <div className="card-container">
-          <div className="profile-container">
-            <p className="profile-letter">s</p>
-            <h1 className="name">Sarah Williams</h1>
+      <div className="app-container">
+        <div className="cash-withdrawal-container">
+          <div className="user-details-container">
+            <div className="initial-container">
+              <p className="initial">{initial}</p>
+            </div>
+            <p className="name">{name}</p>
           </div>
           <div className="balance-container">
-            <p className="balance">Your balance</p>
-            <p className="balance-amount">
-              {balance} <br /> <span className="rupees">in rupees</span>
+            <p className="your-balance">Your Balance</p>
+            <p className="balance">
+              {balance}
+              <br />
+              <span className="currency">In Rupees</span>
             </p>
           </div>
           <p className="withdraw">Withdraw</p>
-          <p className="withdraw-description balance">CHOOSE SUM (IN RUPEES)</p>
-          <ul className="withdraw-amount-list">
-            {denominationsList.map(eachAmount => (
+          <p className="choose-sum">CHOOSE SUM (IN RUPEES)</p>
+          <ul className="denominations-list">
+            {denominationsList.map(eachDenomination => (
               <DenominationItem
-                key={eachAmount.id}
-                denominationDetails={eachAmount}
+                key={eachDenomination.id}
+                denominationDetails={eachDenomination}
                 updateBalance={this.updateBalance}
               />
             ))}
